@@ -19,7 +19,7 @@
   <div class="field">
            <%= form.label :location_name %><br>
 
-<%= form.collection_select :location_name, Location.all, :id, :name, {prompt: "Select a location" }, input_html: { class: "dropdown-toggle" } %>
+<%= form.collection_select :location_id, Location.all, :id, :name, {prompt: "Select a location" }, input_html: { class: "dropdown-toggle" } %>
  </div>
 
 
