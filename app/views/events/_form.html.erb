@@ -17,6 +17,16 @@
   </div>
 
   <div class="field">
+           <%= form.label :location_name %><br>
+
+<%= form.collection_select :location_name, Location.all, :id, :name, {prompt: "Select a location" }, input_html: { class: "dropdown-toggle" } %>
+ </div>
+
+
+
+
+
+  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :event_description %>
   </div>
