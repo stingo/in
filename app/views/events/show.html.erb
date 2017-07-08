@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<% if @event.locations.any? %>
+
+<p>Locations: <%= render @event.locations %></p>
+
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -15,10 +20,7 @@
   <%= @event.eventdate %>
 </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @event.location_name %>
-</p>
+
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

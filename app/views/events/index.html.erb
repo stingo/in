@@ -1,3 +1,6 @@
+
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>Events</h1>
@@ -16,10 +19,21 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
+        
         <td><%= event.description %></td>
         <td><%= event.eventdate %></td>
-        <td><%= event.location_name %></td>
+        <td>
+          
+
+<% if event.locations.any? %>
+
+<p>Locations: <%= render event.locations %></p>
+
+<% end %>
+
+
+
+        </td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
