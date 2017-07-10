@@ -4,12 +4,16 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.all.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+     @location = Location.find(params[:id])
+     
+
+     @location_events = @location.events.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /locations/new
@@ -19,6 +23,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+    @location = Location.find(params[:id])
   end
 
   # POST /locations
@@ -39,17 +44,32 @@ class LocationsController < ApplicationController
 
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
-  def update
-    respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.json { render :show, status: :ok, location: @location }
-      else
-        format.html { render :edit }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+
+def show
+
+@location = Location.find(params[:id])
+
+@location_events = @location.events.paginate(page: params[:page], per_page: 5)
+
+end
+
+
+
+
+
+
+
+  # def update
+    # respond_to do |format|
+      # if @location.update(location_params)
+        # format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @location }
+      # else
+        # format.html { render :edit }
+        # format.json { render json: @location.errors, status: :unprocessable_entity }
+      # end
+    # end
+  # end
 
   # DELETE /locations/1
   # DELETE /locations/1.json

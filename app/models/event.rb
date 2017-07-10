@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
 
-	has_many :location_categories
-	has_many :locations, :through => :location_categories
+	has_many :thing_locations
+
+	has_many :locations, through: :thing_locations
 
 
 

@@ -1,4 +1,4 @@
-class LocationCategory < ActiveRecord::Base
+class ThingLocation < ActiveRecord::Base
 
 belongs_to :event
 

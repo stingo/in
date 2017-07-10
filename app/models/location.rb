@@ -1,10 +1,12 @@
 class Location < ApplicationRecord
 
-	has_many :location_categories
+	has_many :thing_locations
 
-    has_many :events, :through => :location_categories
+    has_many :events, through: :thing_locations
 
-    validates_uniqueness_of :name			
+    validates_uniqueness_of :name	
+
+    
 
 
 	#has_many :events
