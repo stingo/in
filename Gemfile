@@ -20,7 +20,14 @@ gem 'jquery-turbolinks'
 gem 'mini_magick'
 gem 'rails-timeago', '~> 2.15'
 gem 'jquery-ui-rails'
-#
+
+gem 'selectize-rails'
+gem 'carrierwave', '~> 1.0'
+gem 'jquery-turbolinks'
+gem 'devise'
+gem 'font-awesome-rails' # Font-awesome icon
+gem 'ionicons-rails', '~> 2.0'
+gem 'devise'
 
 
 

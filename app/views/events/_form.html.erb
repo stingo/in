@@ -1,4 +1,7 @@
 <%= form_with(model: event, local: true) do |form| %>
+
+
+
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -7,6 +10,7 @@
       <% event.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
+
       </ul>
     </div>
   <% end %>
@@ -17,13 +21,17 @@
   </div>
 
 
+ <div class="form-group">
+    <%= form.label :location_ids, "locations" %>
+    <%= form.select :location_ids, Location.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" } %>
+  </div>
 
 
-<%= form.collection_check_boxes :location_ids, Location.all, :id, :name do |cb| %>
+<%# form.collection_check_boxes :location_ids, Location.all, :id, :name do |cb| %>
 
-<%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+<%# cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
 
-<% end %>
+<%# end %>
            <%# form.label :location_name %><br>
 
 
@@ -48,5 +56,38 @@
 
   <div class="actions">
     <%= form.submit %>
-  </div>
+
+
+
+
 <% end %>
+
+
+
+    <!--selectise-->
+
+    <div class="modal fade location-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="mySmallModalLabel">Add Location</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for Location.new do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :desc, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

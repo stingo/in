@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
      @location = Location.find(params[:id])
-     
+
 
      @location_events = @location.events.paginate(page: params[:page], per_page: 5)
   end
@@ -19,6 +19,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+
   end
 
   # GET /locations/1/edit
@@ -28,19 +29,31 @@ class LocationsController < ApplicationController
 
   # POST /locations
   # POST /locations.json
+
   def create
     @location = Location.new(location_params)
-
-    respond_to do |format|
-      if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render :show, status: :created, location: @location }
-      else
-        format.html { render :new }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
+    if @location.save
+      render json: @location
+      redirect_to request.referer || root_path
+    else
+      render json: {errors: @location.errors.full_messages}
     end
-  end
+end
+  
+
+  #def create
+    #@location = Location.new(location_params)
+
+    #respond_to do |format|
+      #if @location.save
+        #format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        #format.json { render :show, status: :created, location: @location }
+      #else
+        #format.html { render :new }
+        #format.json { render json: @location.errors, status: :unprocessable_entity }
+      #end
+    #end
+  #end
 
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
